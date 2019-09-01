@@ -1,0 +1,125 @@
+<div class="wrapper" style="display: table; width: 100%">
+        <div class="content" style="vertical-align: middle; display:  table-cell;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-xs-0">
+                    </div>
+                    <div class="col-md-6">
+                            <div class="card" >
+                                <div class="card-header card-header-rose">
+                                    <h4 class="card-title">Professional Conference Organizer</h4>
+                                    <p class="category">Sign Up</p>
+                                </div>
+                                <form  name="userForm" ng-submit="addUser(user)" style="width: 70%; margin:auto;" >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Username</label>
+                                                <input type="text" class="form-control" name ="username" ng-model="user.username" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Password</label>
+                                                <input type="password" class="form-control" name="password" ng-model="user.password" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Confirm Password</label>
+                                                <input type="password" class="form-control" name="password" ng-model="user.confirmPassword" ng-pattern="user.password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Firstname</label>
+                                                <input type="text" class="form-control" name="firstname"   ng-model="user.firstname" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Lastname</label>
+                                                <input type="text" class="form-control" type="text" name="lastname" ng-model="user.lastname" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> E-mail</label>
+                                                <input type="e-mail" class="form-control" name="e-mail" ng-model="user.email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Phone number</label>
+                                                <input type="number" class="form-control" name="phone"  ng-model="user.phoneNumber" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Country</label>
+                                                <input type="text" class="form-control" name="country"  ng-model="user.country" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Company</label>
+                                                <input type="text" class="form-control" name="company"  ng-model="user.company" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Position</label>
+                                                <input type="text" class="form-control" name="position"  ng-model="user.position" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Image URL</label>
+                                                <input type="text" class="form-control" name="imageUrl"  ng-model="user.imageUrl" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Type of registration</label>
+                                                <select id="userType" ng-model="user.role" class="form-control selectpicker" >
+                                                    <option value="" selected disabled hidden>Choose here</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="User" selected>User</option>
+                                                </select>                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="submitButton" class="btn btn-default pull-right" data-background-color="green">Register</button>
+                                    <p class="category">Already have account? <a href="#!login" style="color:blue">Login here</a></p>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    

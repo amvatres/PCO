@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" ng-controller="sidebarCtrl">
+
+ <head>
+   <title>Professional Conference Organizer</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon/favicon-32x32.png"/>
+
+   <!-- Fonts and icons -->
+   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+   <!-- Material CSS -->
+   <link href="assets/css/material-dashboard.css" rel="stylesheet" />
+ </head>
+
+    <body>
+
+        <div ng-if="check_url_registration()">
+            <div ng-include="'registration.html'"></div>
+        </div>
+
+        <div ng-if="(!check_url_registration() && !check_login()) || check_url_login()">
+            <div ng-include="'login.html'"></div>
+        </div>
+    
+        <div ng-if="check_login() && check_admin()">
+            <div ng-include="'home.html'"></div>
+        </div>
+    </body>
+
+    <!-- JS Scripts -->
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-route.js"></script>
+    <script src="assets/js/xeditable.min.js"></script>
+    <script src="assets/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+    <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+  <!-- Controllers -->
+
+
+    <!-- Custom script -->
+    <script>
+        var myApp = angular.module("myApp", ["ngRoute", "xeditable", "ui.bootstrap", "ngAnimate", "toastr"]);
+
+        myApp.config(function($routeProvider) {
+            $routeProvider
+            .when('/dashboard', {
+                templateUrl : 'templates/dashboard.html',
+                controller : 'sidebarCtrl'
+            })
+            ;
+        });
+    </script>
+
+  <!-- JS Scripts -->
+  <script src="controllers/sidebar-controller.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+  <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+</html>

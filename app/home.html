@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="azure"  data-background-color="azure"  data-image="https://helenadailyenglish.com/wp-content/uploads/2018/10/employees.png">
+        <div class="logo">
+            <a href="#" class="simple-text">
+                PCO
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item" ng-class="getClass('/dashboard')">
+                    <a class="nav-link" href="#!dashboard" ng-click="menuItemClicked()">
+                        <i class="material-icons">dashboard</i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item" ng-class="getClass('/admins')">
+                    <a class="nav-link" href="#!admins" ng-click="menuItemClicked()">
+                        <i class="material-icons">people</i>
+                        <p>Admins</p>
+                    </a>
+                </li>
+                <li class="nav-item" ng-class="getClass('/sponsors')">
+                    <a class="nav-link" href="#!sponsors" ng-click="menuItemClicked()">
+                        <i class="material-icons">dashboard</i>
+                        <p>Sponsors</p>
+                    </a>
+                </li>
+                <li class="nav-item" ng-class="getClass('/agenda')">
+                    <a class="nav-link" href="#!agenda" ng-click="menuItemClicked()">
+                        <i class="material-icons">dashboard</i>
+                        <p>Agenda</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" ng-click="openNavigationDrawer()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"> Professional Conference Organizer - Admin Panel</a>
+    
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <i class="material-icons" ng-click="logout()" >power_settings_new</i>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div ng-view></div>
+            </div>
+        </div>
+        </div>
+    </div>
