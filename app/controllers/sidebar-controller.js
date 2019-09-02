@@ -28,13 +28,12 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
         return false;
     }
   
-    $scope.addUser = function(user){
+    $scope.register = function(user){
         $http.post('/api/users', user, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
             $location.path('/dashboard');
             toastr.success('You have successfully registered!', 'Success');
         });
       }
-
 
 
     $scope.login = function(credentials){

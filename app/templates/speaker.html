@@ -1,0 +1,145 @@
+
+           <div class="row">
+                <div class="col-md-8">
+                  <div class="card">
+                    <div class="card-header card-header-info">
+                      <h4 class="card-title">Edit Speaker</h4>
+                      <p class="card-category">Fill in the fields below</p>
+                    </div>
+                    <div class="card-body">
+                      <form ng-submit="editSpeaker(speaker)">
+                          
+                       <div class="row">
+                           <div class="col-md-6">
+                               <div class="form-group">
+                               <label class="bmd-label-floating">First Name</label>
+                               <input type="text" class="form-control" ng-model="speaker.firstname" required>
+                               </div>
+                           </div>
+                           <div class="col-md-6">
+                               <div class="form-group">
+                               <label class="bmd-label-floating">Last Name</label>
+                               <input type="text" class="form-control" ng-model="speaker.lastname" required>
+                               </div>
+                           </div>
+                        </div>
+   
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Email address</label>
+                              <input type="text" class="form-control" ng-model="speaker.email" required >
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Country</label>
+                              <input type="text" class="form-control" ng-model="speaker.country" required>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Image Url</label>
+                              <input type="text" class="form-control" ng-model="speaker.imageUrl" >
+                            </div>
+                          </div>
+                        </div>
+   
+                        <div class="row">
+                           <div class="col-md-6">
+                               <div class="form-group">
+                               <label class="bmd-label-floating">Company</label>
+                               <input type="text" class="form-control" ng-model="speaker.company" required >
+                               </div>
+                           </div>
+                           <div class="col-md-6">
+                               <div class="form-group">
+                               <label class="bmd-label-floating">Position</label>
+                               <input type="text" class="form-control" ng-model="speaker.position" required>
+                               </div>
+                           </div>
+                       </div>
+   
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">LinkedIn Url</label>
+                              <input type="text" class="form-control" ng-model="speaker.linkedinUrl">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Facebook Url</label>
+                              <input type="text" class="form-control" ng-model="speaker.facebookUrl">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Twitter Url</label>
+                              <input type="text" class="form-control" ng-model="speaker.twitterUrl">
+                            </div>
+                          </div>
+                        </div>
+   
+                        <div class="row">
+                           <div class="col-md-12">
+                               <div class="form-group">
+                               <label class="bmd-label-floating">Topic</label>
+                               <input type="text" class="form-control" ng-model="speaker.topic">
+                               </div>
+                           </div>
+                       </div>
+   
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Description</label>
+                              <div class="form-group">
+                                <label class="bmd-label-floating"> Please enter short description of topic this user is going to talk about on the conference.</label>
+                                <textarea class="form-control" rows="5" ng-model="speaker.description"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-default pull-right">Edit speaker</button>
+                        <div class="clearfix"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+   
+   
+                <div class="col-md-4" ng-init="showSpeaker()">
+                  <div class="card card-profile"  >
+                    <div class="card-avatar"  ng-if=" user.imageUrl == '' || user.imageUrl == null">
+                      <a href="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg"><img class="img" src="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg" /></a>
+                    </div>
+                    <div class="card-avatar"  ng-if=" user.imageUrl != ''">
+                       <a href="{{ speaker.imageUrl }}"><img class="img" src=" {{ speaker.imageUrl }}" /></a>
+                       </div>
+                    <div class="card-body">
+                      <h6 class="card-category text-gray">{{ speaker.position }}</h6>
+                      <h4 class="card-title">{{ speaker.firstname }} {{ speaker.lastname }}</h4>
+                      <p class="card-description">{{ user.firstname }} currently works as {{ user.position }} in company named {{ user.company }}.</p>
+                      <p class="card-description"> Email: {{ speaker.email }} </p>
+                      <p class="card-description"> Country: {{ speaker.country }} </p>
+                      <p class="card-description"> Company: {{ speaker.country }} </p>
+                      <p class="card-description"> Position: {{ speaker.position }} </p>
+                      <p class="card-description"> Topic: {{ speaker.topic }} </p>
+                      <p class="card-description"> Description: {{ speaker.description }} </p>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                            <a href="{{ speaker.twitterUrl }}" class="btn btn-just-icon btn-twitter btn-round">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="{{ speaker.facebookUrl }}" class="btn btn-just-icon btn-facebook btn-round">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a href="{{ speaker.linkedinUrl }}" class="btn btn-just-icon btn-google btn-round">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </div>
+                  </div>
+                </div>
+              </div>
+           

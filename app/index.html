@@ -46,19 +46,52 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
     <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
 
-  <!-- Controllers -->
+    <!-- Controllers -->
+    <script src="controllers/dashboard-controller.js"></script>
+    <script src="controllers/admins-controller.js"></script>
+    <script src="controllers/speakers-controller.js"></script>
+    <script src="controllers/agenda-controller.js"></script>
 
 
     <!-- Custom script -->
     <script>
         var myApp = angular.module("myApp", ["ngRoute", "xeditable", "ui.bootstrap", "ngAnimate", "toastr"]);
+        myApp.controller('adminsController', adminsController);
+        myApp.controller('speakersController', speakersController);
+        myApp.controller('agendaController', agendaController);
+        myApp.controller('dashboardController', dashboardController);
 
         myApp.config(function($routeProvider) {
             $routeProvider
             .when('/dashboard', {
                 templateUrl : 'templates/dashboard.html',
-                controller : 'sidebarCtrl'
+                controller : 'dashboardController'
             })
+            .when('/tickets/standard', {
+                templateUrl : 'templates/dashboard.html',
+                controller : 'dashboardController'
+            })
+            .when('/tickets/standard/count', {
+                templateUrl : 'templates/dashboard.html',
+                controller : 'dashboardController'
+            })
+            .when('/admins', {
+                templateUrl : 'templates/admins.html',
+                controller : 'adminsController'
+            })
+            .when('/speakers', {
+                templateUrl : 'templates/speakers.html',
+                controller : 'speakersController'
+            })
+            .when('/speakers/:id/show', {
+                templateUrl : 'templates/speaker.html',
+                controller : 'speakersController'
+            })
+            .when('/agenda', {
+                templateUrl : 'templates/agenda.html',
+                controller : 'agendaController'
+            })
+           
             ;
         });
     </script>

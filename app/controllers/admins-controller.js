@@ -1,4 +1,4 @@
-function adminAccountController($scope,$http,$location,$routeParams,$route,toastr){
+function adminsController($scope,$http,$location,$routeParams,$route,toastr){
     
       $scope.getSysUsers = function(){
         $http.get('/api/users/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){

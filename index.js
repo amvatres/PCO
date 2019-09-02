@@ -12,6 +12,8 @@ var config = require('./config'); // Get configurations
 //----------------------------------------------------------------------------------
 //Models
 var User = require('./app/models/user'); // Mongoose users model
+var Speakers = require('./app/models/speaker'); 
+var Tickets = require('./app/models/ticket'); 
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
@@ -37,7 +39,7 @@ app.get('/', function (req, res) {
 var apiRoutes = express.Router();
 
 //----------------------------------------------------------------------------------
-//Authentication - No Middleware needed
+//Login - No Middleware needed
 apiRoutes.post('/authenticate', function(req, res){
 	var username = req.body.username;
 	var enteredPassword = req.body.password;
@@ -85,7 +87,7 @@ apiRoutes.post('/authenticate', function(req, res){
 	});
 });
 
-//Create new user
+//Register new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;
 	var firstname = req.body.firstname;
@@ -113,9 +115,7 @@ apiRoutes.post('/users', function(req, res){
 	  });
   });
 
-  
 
-  
 //----------------------------------------------------------------------------------
 //MIDDLEWARE FUNCTION
 apiRoutes.use(function(req, res, next){
@@ -149,8 +149,6 @@ apiRoutes.use(function(req, res, next){
 //----------------------------------------------------------------------------------
 //Authenticated routes
 
-
-//Get all users
 apiRoutes.get('/users', function(req, res){
 	User.find(function(err, users){
 	  if(err)
@@ -159,7 +157,6 @@ apiRoutes.get('/users', function(req, res){
 	})
   });
   
-  //Get user by id
   apiRoutes.get('/users/:id', function(req, res){
 	  User.findOne({_id:req.params.id}, function(err, users){
 		  if(err)
@@ -168,7 +165,6 @@ apiRoutes.get('/users', function(req, res){
 	  });
   });
   
-  //Remove selected user
   apiRoutes.delete('/users/:id', function(req, res){
 	  User.findOneAndRemove({_id:req.params.id}, function(err, users){
 		  if(err)
@@ -177,7 +173,6 @@ apiRoutes.get('/users', function(req, res){
 	  });
   });
   
-  //Update selected user
   apiRoutes.put('/users/:id', function(req, res){
 	  var admin = false;
 	  if(req.body.role == "Admin"){
@@ -197,7 +192,115 @@ apiRoutes.get('/users', function(req, res){
 	  });
   });
 
+//----------------------------------------------------------------------------------
 
+  apiRoutes.post('/speakers', function(req, res){
+	var firstname = req.body.firstname;
+	var lastname = req.body.lastname;
+	var email = req.body.email;
+	var country = req.body.country;
+	var company = req.body.company;
+	var position = req.body.position;
+	var imageUrl = req.body.imageUrl;
+	var twitterUrl = req.body.twitterUrl;
+	var linkedinUrl = req.body.linkedinUrl;
+	var facebookUrl = req.body.facebookUrl;
+	var topic = req.body.topic;
+	var description = req.body.description;
+
+
+	var speaker = new Speakers({firstname:firstname, lastname:lastname, email:email, country: country, company: company, position: position, imageUrl: imageUrl, twitterUrl: twitterUrl, linkedinUrl: linkedinUrl, facebookUrl: facebookUrl, topic:topic, description: description});
+	Speakers.create(speaker, function(err, speaker){
+		if(err)
+			res.send(err);
+		res.json(speaker);
+		});
+	});
+
+	apiRoutes.get('/speakers', function(req, res){
+		Speakers.find(function(err, speakers){
+		  if(err)
+			res.send(err);
+		  res.json(speakers);
+		})
+	});
+	
+	apiRoutes.delete('/speakers/:id', function(req, res){
+		Speakers.findOneAndRemove({_id:req.params.id}, function(err, speaker){
+			if(err)
+				res.send(err);
+			res.json(speaker);
+		});
+	});
+	
+	apiRoutes.get('/speakers/:id', function(req, res){
+		Speakers.findOne({_id:req.params.id}, function(err, speaker){
+			if(err)
+				res.send(err);
+			res.json(speaker);
+		});
+	});
+
+	apiRoutes.put('/speakers/:id', function(req, res){
+	
+		var query = {
+			 firstname : req.body.firstname,
+			 lastname : req.body.lastname,
+			 email : req.body.email,
+		 	 country : req.body.country,
+			 company : req.body.company,
+			 position : req.body.position,
+			 imageUrl : req.body.imageUrl,
+			 twitterUrl : req.body.twitterUrl,
+			 linkedinUrl : req.body.linkedinUrl,
+			 facebookUrl : req.body.facebookUrl,
+			 topic : req.body.topic,
+			 description : req.body.description
+		};
+	
+		Speakers.findOneAndUpdate({_id:req.params.id}, query, function(err, speaker){
+			if(err)
+				res.send(err);
+			res.json(speaker);
+		});
+	});
+
+//----------------------------------------------------------------------------------
+
+	apiRoutes.get('/tickets/standard', function(req, res){
+		Tickets.find({type: "Standard"}, function(err, tickets){
+		  if(err)
+			res.send(err);
+		  res.json(tickets);
+		})
+	  });
+
+	  apiRoutes.get('/tickets/standard/count', function(req, res){
+		Tickets.countDocuments({type: "Standard"}, function(err, tickets){
+		  if(err)
+			res.send(err);
+		  res.json(tickets);
+		})
+	  });
+
+	  apiRoutes.get('/tickets/pro', function(req, res){
+		Tickets.find({type: "Pro"}, function(err, tickets){
+		  if(err)
+			res.send(err);
+		  res.json(tickets);
+		})
+	  });
+
+	  apiRoutes.get('/tickets/pro/count', function(req, res){
+		Tickets.countDocuments({type: "Pro"}, function(err, tickets){
+		  if(err)
+			res.send(err);
+		  res.json(tickets);
+		})
+	  });
+
+
+	
 //----------------------------------------------------------------------------------
 app.use('/api', apiRoutes);
 //----------------------------------------------------------------------------------
