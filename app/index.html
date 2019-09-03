@@ -18,6 +18,7 @@
    <!-- Fonts and icons -->
    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
++
 
    <!-- Material CSS -->
    <link href="assets/css/material-dashboard.css" rel="stylesheet" />
@@ -32,6 +33,7 @@
         <div ng-if="(!check_url_registration() && !check_login()) || check_url_login()">
             <div ng-include="'login.html'"></div>
         </div>
+
     
         <div ng-if="check_login() && check_admin()">
             <div ng-include="'home.html'"></div>
@@ -46,11 +48,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
     <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
 
+
     <!-- Controllers -->
     <script src="controllers/dashboard-controller.js"></script>
     <script src="controllers/admins-controller.js"></script>
     <script src="controllers/speakers-controller.js"></script>
     <script src="controllers/agenda-controller.js"></script>
+    <script src="controllers/conference-controller.js"></script>
 
 
     <!-- Custom script -->
@@ -60,12 +64,21 @@
         myApp.controller('speakersController', speakersController);
         myApp.controller('agendaController', agendaController);
         myApp.controller('dashboardController', dashboardController);
+        myApp.controller('conferenceController', conferenceController);
 
         myApp.config(function($routeProvider) {
             $routeProvider
+            .when('/', {
+                templateUrl : 'templates/dashboard.html',
+                controller : 'dashboardController'
+            })
             .when('/dashboard', {
                 templateUrl : 'templates/dashboard.html',
                 controller : 'dashboardController'
+            })
+            .when('/conference', {
+                templateUrl : 'templates/conference.html',
+                controller : 'conferenceController'
             })
             .when('/tickets/standard', {
                 templateUrl : 'templates/dashboard.html',

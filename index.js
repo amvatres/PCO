@@ -14,6 +14,7 @@ var config = require('./config'); // Get configurations
 var User = require('./app/models/user'); // Mongoose users model
 var Speakers = require('./app/models/speaker'); 
 var Tickets = require('./app/models/ticket'); 
+var Conference = require('./app/models/conference'); 
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
@@ -299,6 +300,22 @@ apiRoutes.get('/users', function(req, res){
 		})
 	  });
 
+	  apiRoutes.get('/tickets/premium', function(req, res){
+		Tickets.find({type: "Premium"}, function(err, tickets){
+		  if(err)
+			res.send(err);
+		  res.json(tickets);
+		})
+	  });
+
+	  apiRoutes.get('/tickets/premium/count', function(req, res){
+		Tickets.countDocuments({type: "Premium"}, function(err, tickets){
+		  if(err)
+			res.send(err);
+		  res.json(tickets);
+		})
+	  });
+//----------------------------------------------------------------------------------
 
 	
 //----------------------------------------------------------------------------------
