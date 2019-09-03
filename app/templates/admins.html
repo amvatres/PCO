@@ -1,22 +1,22 @@
 
-    <div class="row" ng-init="getSysUsers()"  >
-            <div class="col-md-4" ng-repeat="user in users">
+    <div class="row" ng-init="getAdmins()"  >
+            <div class="col-md-4" ng-repeat="admin in admins">
                 <div class="card card-profile"  >
                     <div class="card-avatar"  >
-                        <div ng-if=" user.imageUrl == '' || user.imageUrl == null">
+                        <div ng-if=" admin.imageUrl == '' || admin.imageUrl == null">
                           <a href="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg"><img class="img" src="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg" /></a>
                         </div>
-                        <div ng-if=" user.imageUrl != ''">
-                          <a href="{{ user.imageUrl }}"><img class="img" src=" {{ user.imageUrl }}" /></a>
+                        <div ng-if=" admin.imageUrl != ''">
+                          <a href="{{ admin.imageUrl }}"><img class="img" src=" {{ admin.imageUrl }}" /></a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-gray">{{ user.position }}</h6>
-                        <h4 class="card-title">{{ user.firstname }} {{user.lastname}}</h4>
-                        <p class="card-description">{{ user.firstname }} currently works as {{ user.position }} in company named {{ user.company }}. </p>
-                        <p class="card-description"> Country: {{ user.country }} </p>
-                        <p class="card-description"> E-mail: {{ user.email }} </p>
-                        <p class="card-description"> Phone number: {{ user.phoneNumber }} </p>
+                        <h6 class="card-category text-gray">{{ admin.position }}</h6>
+                        <h4 class="card-title">{{ admin.firstname }} {{admin.lastname}}</h4>
+                        <p class="card-description">{{ admin.firstname }} currently works as {{ admin.position }} in company named {{ admin.company }}. </p>
+                        <p class="card-description"> Country: {{ admin.country }} </p>
+                        <p class="card-description"> E-mail: {{ admin.email }} </p>
+                        <p class="card-description"> Phone number: {{ admin.phoneNumber }} </p>
                         <a  href="" class="btn btn-primary btn-round">Follow</a>
                     </div>
                 </div>

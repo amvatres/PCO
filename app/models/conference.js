@@ -12,9 +12,10 @@ var ConferenceModelSchema = new Schema({
     description: String,
     venue:String,
     imageUrl:String,
+    videoUrl:String,
     contactAddress: String,
     contactPhoneNumber: String,
-    contactEmail:String,
+    contactEmail:String
 });
 
 module.exports = mongoose.model('Conference', ConferenceModelSchema );

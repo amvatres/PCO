@@ -28,6 +28,12 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
         return false;
     }
   
+    $scope.getMessageCount = function(){
+        $http.get('/api/messages/count', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+            $scope.messagesCount = response.data;
+        });
+    }
+
     $scope.register = function(user){
         $http.post('/api/users', user, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
             $location.path('/dashboard');

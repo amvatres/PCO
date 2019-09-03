@@ -49,21 +49,36 @@
     <div class="main-panel">
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" ng-click="openNavigationDrawer()">
+                <div class="navbar-wrapper">
+                <a class="navbar-brand" >Professional Conference Organizer - Admin Panel</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon icon-bar"></span>
                 <span class="navbar-toggler-icon icon-bar"></span>
                 <span class="navbar-toggler-icon icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"> Professional Conference Organizer - Admin Panel</a>
-    
-            <div class="collapse navbar-collapse justify-content-end">
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav">
-                <li class="nav-item">
-                    <i class="material-icons" ng-click="logout()" >power_settings_new</i>
-                </li>
+                    <li class="nav-item dropdown" ng-init="getMessageCount()">
+                        <a class="nav-link" href="#!/messages" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">notifications</i>
+                            <span class="notification">{{ messagesCount }}</span>
+                            <div class="ripple-container"></div></a>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link" href="#!/profile"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="material-icons">person</i>
+                            
+                        <div class="ripple-container"></div></a>
+                    </li>
+                    <li class="nav-item dropdown show">
+                            <a class="nav-link"  ng-click="logout();" aria-haspopup="true" aria-expanded="true">
+                                <i class="material-icons" >power_settings_new</i>
+                            <div class="ripple-container"></div></a>
+                        </li>
                 </ul>
-            </div>
+                </div>
             </div>
         </nav>
         <div class="content">
@@ -71,5 +86,5 @@
                 <div ng-view></div>
             </div>
         </div>
-        </div>
     </div>
+</div>

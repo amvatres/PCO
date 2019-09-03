@@ -1,129 +1,127 @@
-        <div class="row">
-          <div class="col-md-4" ng-init="getSpeakers()">
-              <div class="card card-profile"  ng-repeat="speaker in speakers">
-                <div class="card-avatar"  ng-if=" user.imageUrl == '' || user.imageUrl == null">
-                  <a href="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg"><img class="img" src="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg" /></a>
+<div class="row" ng-init="getSpeakers()">
+  <div class="col-md-4" ng-repeat="speaker in speakers">
+      <div class="card card-profile"  >
+        <div class="card-avatar"  ng-if=" speaker.imageUrl == '' || speaker.imageUrl == null">
+          <a href="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg"><img class="img" src="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg" /></a>
+        </div>
+        <div class="card-avatar"  ng-if=" speaker.imageUrl != ''">
+          <a href="{{ speaker.imageUrl }}"><img class="img" src=" {{ speaker.imageUrl }}" /></a>
+        </div>
+        <div class="card-body">
+          <h6 class="card-category text-gray">{{ speaker.position }}</h6>
+          <h4 class="card-title">{{ speaker.firstname }} {{ speaker.lastname }}</h4>
+          <p class="card-description">{{ speaker.firstname }} currently works as {{ speaker.position }} in company named {{ speaker.company }}.</p>
+          <a href="#!/speakers/{{speaker._id}}/show" class="btn btn-success btn-round">See profile</a>
+          <a ng-click="deleteSpeaker(speaker._id)" class="btn btn-danger btn-round">Delete</a>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4 class="card-title">Add Speaker</h4>
+        <p class="card-category">Fill in the fields below</p>
+      </div>
+      <div class="card-body">
+        <form ng-submit="addSpeaker(speaker)">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">First Name</label>
+                <input type="text" class="form-control" ng-model="speaker.firstname" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Last Name</label>
+                <input type="text" class="form-control" ng-model="speaker.lastname" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Email address</label>
+                  <input type="text" class="form-control" ng-model="speaker.email" required >
                 </div>
-                <div class="card-avatar"  ng-if=" user.imageUrl != ''">
-                  <a href="{{ speaker.imageUrl }}"><img class="img" src=" {{ speaker.imageUrl }}" /></a>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Country</label>
+                  <input type="text" class="form-control" ng-model="speaker.country" required>
                 </div>
-                <div class="card-body">
-                  <h6 class="card-category text-gray">{{ speaker.position }}</h6>
-                  <h4 class="card-title">{{ speaker.firstname }} {{ speaker.lastname }}</h4>
-                  <p class="card-description">{{ user.firstname }} currently works as {{ user.position }} in company named {{ user.company }}.</p>
-                  <a href="#!/speakers/{{speaker._id}}/show" class="btn btn-success btn-round">See profile</a>
-                  <a ng-click="deleteSpeaker(speaker._id)" class="btn btn-danger btn-round">Delete</a>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Image Url</label>
+                  <input type="text" class="form-control" ng-model="speaker.imageUrl" >
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Company</label>
+                    <input type="text" class="form-control" ng-model="speaker.company" required >
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Position</label>
+                    <input type="text" class="form-control" ng-model="speaker.position" required>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">LinkedIn Url</label>
+                <input type="text" class="form-control" ng-model="speaker.linkedinUrl">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Facebook Url</label>
+                <input type="text" class="form-control" ng-model="speaker.facebookUrl">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Twitter Url</label>
+                <input type="text" class="form-control" ng-model="speaker.twitterUrl">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="form-group">
+                  <label class="bmd-label-floating">Topic</label>
+                  <input type="text" class="form-control" ng-model="speaker.topic">
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Description</label>
+                <div class="form-group">
+                  <label class="bmd-label-floating"> Please enter short description of topic this user is going to talk about on the conference.</label>
+                  <textarea class="form-control" rows="5" ng-model="speaker.description"></textarea>
                 </div>
               </div>
             </div>
           </div>
-           <div class="row">
-             <div class="col-md-12">
-               <div class="card">
-                 <div class="card-header card-header-info">
-                   <h4 class="card-title">Add Speaker</h4>
-                   <p class="card-category">Fill in the fields below</p>
-                 </div>
-                 <div class="card-body">
-                   <form ng-submit="addSpeaker(speaker)">
-                       
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label class="bmd-label-floating">First Name</label>
-                            <input type="text" class="form-control" ng-model="speaker.firstname" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label class="bmd-label-floating">Last Name</label>
-                            <input type="text" class="form-control" ng-model="speaker.lastname" required>
-                            </div>
-                        </div>
-                     </div>
-
-                     <div class="row">
-                       <div class="col-md-5">
-                         <div class="form-group">
-                           <label class="bmd-label-floating">Email address</label>
-                           <input type="text" class="form-control" ng-model="speaker.email" required >
-                         </div>
-                       </div>
-                       <div class="col-md-3">
-                         <div class="form-group">
-                           <label class="bmd-label-floating">Country</label>
-                           <input type="text" class="form-control" ng-model="speaker.country" required>
-                         </div>
-                       </div>
-                       <div class="col-md-4">
-                         <div class="form-group">
-                           <label class="bmd-label-floating">Image Url</label>
-                           <input type="text" class="form-control" ng-model="speaker.imageUrl" >
-                         </div>
-                       </div>
-                     </div>
-
-                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label class="bmd-label-floating">Company</label>
-                            <input type="text" class="form-control" ng-model="speaker.company" required >
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label class="bmd-label-floating">Position</label>
-                            <input type="text" class="form-control" ng-model="speaker.position" required>
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="row">
-                       <div class="col-md-4">
-                         <div class="form-group">
-                           <label class="bmd-label-floating">LinkedIn Url</label>
-                           <input type="text" class="form-control" ng-model="speaker.linkedinUrl">
-                         </div>
-                       </div>
-                       <div class="col-md-4">
-                         <div class="form-group">
-                           <label class="bmd-label-floating">Facebook Url</label>
-                           <input type="text" class="form-control" ng-model="speaker.facebookUrl">
-                         </div>
-                       </div>
-                       <div class="col-md-4">
-                         <div class="form-group">
-                           <label class="bmd-label-floating">Twitter Url</label>
-                           <input type="text" class="form-control" ng-model="speaker.twitterUrl">
-                         </div>
-                       </div>
-                     </div>
-
-                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                            <label class="bmd-label-floating">Topic</label>
-                            <input type="text" class="form-control" ng-model="speaker.topic">
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="row">
-                       <div class="col-md-12">
-                         <div class="form-group">
-                           <label>Description</label>
-                           <div class="form-group">
-                             <label class="bmd-label-floating"> Please enter short description of topic this user is going to talk about on the conference.</label>
-                             <textarea class="form-control" rows="5" ng-model="speaker.description"></textarea>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                     <button type="submit" class="btn btn-default pull-right">Add speaker</button>
-                     <div class="clearfix"></div>
-                   </form>
-                 </div>
-               </div>
-             </div>
-           </div>
-        
+          <button type="submit" class="btn btn-default pull-right">Add speaker</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

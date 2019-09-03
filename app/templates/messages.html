@@ -1,0 +1,22 @@
+<div  ng-init="getMessages()">
+    <div class="card" ng-repeat="message in messages">
+        <div class="card-body "  >
+            <h6 class="card-category text-danger">
+                <i class="material-icons">message</i> {{ message.name }}
+            </h6>
+            <h4 class="card-title">
+                <a href=""> {{ message.message }}</a>
+            </h4>
+        </div>
+        <div class="card-footer ">
+            <div class="author">
+                <a href="">
+                    <span>{{ message.subject }}</span>
+                </a>
+            </div>
+            <div class="stats ml-auto">
+                <a href="#!/messages/{{message._id}}/show" class="btn btn-danger btn-round">Answer</a>
+            </div>
+        </div>
+    </div>
+</div>

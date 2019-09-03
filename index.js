@@ -15,6 +15,7 @@ var User = require('./app/models/user'); // Mongoose users model
 var Speakers = require('./app/models/speaker'); 
 var Tickets = require('./app/models/ticket'); 
 var Conference = require('./app/models/conference'); 
+var Messages = require('./app/models/message'); 
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
@@ -150,6 +151,16 @@ apiRoutes.use(function(req, res, next){
 //----------------------------------------------------------------------------------
 //Authenticated routes
 
+
+	apiRoutes.get('/admins', function(req, res){
+	User.find({admin: true}, function(err, admins){
+	  if(err)
+		res.send(err);
+	  res.json(admins);
+	})
+  });
+
+//----------------------------------------------------------------------------------
 apiRoutes.get('/users', function(req, res){
 	User.find(function(err, users){
 	  if(err)
@@ -316,8 +327,106 @@ apiRoutes.get('/users', function(req, res){
 		})
 	  });
 //----------------------------------------------------------------------------------
+	apiRoutes.post('/conference', function(req, res){
+		var title = req.body.title;
+		var date = req.body.date;
+		var place = req.body.place;
+		var city = req.body.city;
+		var description = req.body.description;
+		var venue = req.body.venue;
+		var imageUrl = req.body.imageUrl;
+		var videoUrl = req.body.imageUrl;
+		var contactAddress = req.body.contactAddress;
+		var contactPhoneNumber = req.body.contactPhoneNumber;
+		var contactEmail = req.body.contactEmail;
 
+		var conference = new Conference({title:title, date:date, place:place, city:city, venu:venue, imageUrl: imageUrl, videoUrl:videoUrl, contactAddress:contactAddress, contactPhoneNumber:contactPhoneNumber, contactEmail: contactEmail, description: description});
+		Conference.create(conference, function(err, conference){
+			if(err)
+				res.send(err);
+			res.json(conference);
+			});
+		});
+
+		apiRoutes.get('/conference', function(req, res){
+			Conference.find(function(err, conference){
+			  if(err)
+				res.send(err);
+			  res.json(conference);
+			})
+		});
+
+		apiRoutes.get('/conference/count', function(req, res){
+			Conference.countDocuments( function(err, conference){
+			  if(err)
+				res.send(err);
+			  res.json(conference);
+			})
+		  });
 	
+		  apiRoutes.delete('/conference/:id', function(req, res){
+			Conference.findOneAndRemove({_id:req.params.id}, function(err, conference){
+				if(err)
+					res.send(err);
+				res.json(conference);
+			});
+		});
+		
+		apiRoutes.get('/conference/:id', function(req, res){
+			Conference.findOne({_id:req.params.id}, function(err, conference){
+				if(err)
+					res.send(err);
+				res.json(conference);
+			});
+		});
+	
+		apiRoutes.put('/conference/:id', function(req, res){
+		
+			var query = {
+				 title : req.body.title,
+				 date : req.body.date,
+				 place : req.body.place,
+				 city : req.body.city,
+				 description : req.body.description,
+				 venue : req.body.venue,
+				 imageUrl : req.body.imageUrl,
+				 videoUrl: req.body.videoUrl,
+				 contactAddress : req.body.contactAddress,
+				 contactPhoneNumber : req.body.contactPhoneNumber,
+				 contactEmail : req.body.contactEmail
+			};
+		
+			Conference.findOneAndUpdate({_id:req.params.id}, query, function(err, conference){
+				if(err)
+					res.send(err);
+				res.json(conference);
+			});
+		});
+//----------------------------------------------------------------------------------
+		
+		apiRoutes.get('/messages', function(req, res){
+			Messages.find(function(err, messages){
+			if(err)
+				res.send(err);
+			res.json(messages);
+			})
+		});
+
+		apiRoutes.get('/messages/count', function(req, res){
+			Messages.countDocuments( function(err, messages){
+			  if(err)
+				res.send(err);
+			  res.json(messages);
+			})
+		  });
+
+		  apiRoutes.get('/messages/:id', function(req, res){
+			Messages.findOne({_id:req.params.id}, function(err, messages){
+				if(err)
+					res.send(err);
+				res.json(messages);
+			});
+		});
 //----------------------------------------------------------------------------------
 app.use('/api', apiRoutes);
 //----------------------------------------------------------------------------------

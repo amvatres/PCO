@@ -55,6 +55,7 @@
     <script src="controllers/speakers-controller.js"></script>
     <script src="controllers/agenda-controller.js"></script>
     <script src="controllers/conference-controller.js"></script>
+    <script src="controllers/messages-controller.js"></script>
 
 
     <!-- Custom script -->
@@ -64,6 +65,7 @@
         myApp.controller('speakersController', speakersController);
         myApp.controller('agendaController', agendaController);
         myApp.controller('dashboardController', dashboardController);
+        myApp.controller('messagesController', messagesController);
         myApp.controller('conferenceController', conferenceController);
 
         myApp.config(function($routeProvider) {
@@ -78,6 +80,14 @@
             })
             .when('/conference', {
                 templateUrl : 'templates/conference.html',
+                controller : 'conferenceController'
+            })
+            .when('/conference/count', {
+                templateUrl : 'templates/conference.html',
+                controller : 'conferenceController'
+            })
+            .when('/conference/:id/show', {
+                templateUrl : 'templates/conference-information.html',
                 controller : 'conferenceController'
             })
             .when('/tickets/standard', {
@@ -103,6 +113,18 @@
             .when('/agenda', {
                 templateUrl : 'templates/agenda.html',
                 controller : 'agendaController'
+            })
+            .when('/messages', {
+                templateUrl : 'templates/messages.html',
+                controller : 'messagesController'
+            })
+            .when('/messages/count', {
+                templateUrl : 'templates/messages.html',
+                controller : 'sidebarController'
+            })
+            .when('/messages/:id/show', {
+                templateUrl : 'templates/answer.html',
+                controller : 'messagesController'
             })
            
             ;

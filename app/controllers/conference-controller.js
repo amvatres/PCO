@@ -1,45 +1,50 @@
 function conferenceController($scope,$http,$location,$routeParams,$route,toastr){
-
- 
-   
-    $scope.addSpeaker = function(speaker){
-
-        $http.post('/api/speakers', speaker, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+    
+  $scope.addConferenceInformation = function(conference){
+        $http.post('/api/conference', conference, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
             $route.reload();
-            toastr.success('You have successfully added new speaker on the list!', 'Success');
+            toastr.success('You have successfully added conference information!', 'Success');
         });
       }
 
-
-    $scope.getSpeakers = function(){
-      $http.get('/api/speakers/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-        $scope.speakers = response.data;
+    $scope.getConferenceInformation = function(){
+      $http.get('/api/conference/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+        $scope.conferenceInfo = response.data;
       });
     }
 
-    $scope.showSpeaker = function(){
+    $scope.getConferenceCount = function(){
+      $http.get('/api/conference/count', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+        $scope.conferencecount = response.data;
+      });
+    }
+     
+
+    $scope.showConferenceInformation = function(){
       var id = $routeParams.id;
-      $http.get('/api/speakers/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-        $scope.speaker = response.data;
+      $http.get('/api/conference/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+        $scope.conference = response.data;
       });
+
+      
     }
 
-    $scope.deleteSpeaker = function(id){
+    $scope.deleteConference = function(id){
       if(localStorage.getItem('admin') == 'true'){
       var id = id;
-      $http.delete('/api/speakers/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+      $http.delete('/api/conference/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
         $route.reload();
-        toastr.success('You have successfully removed selected speaker!', 'Success');
+        toastr.success('You have successfully removed conference information!', 'Success');
       })}else{
         toastr.error('You do not have permission to delete!', 'PERMISSION');
       }
     }
 
-    $scope.editSpeaker = function(){
+    $scope.editConferenceInformation = function(){
       var id = $routeParams.id;
-      $http.put('/api/speakers/'+ id , $scope.speaker, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+      $http.put('/api/conference/'+ id , $scope.conference, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
         $route.reload();
-        toastr.success('You have successfully updated speaker information!', 'Updated');
+        toastr.success('You have successfully updated conference information!', 'Updated');
       });
     };
 }
