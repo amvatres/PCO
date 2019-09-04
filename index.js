@@ -436,6 +436,14 @@ apiRoutes.get('/users', function(req, res){
 				res.json(messages);
 			});
 		});
+		apiRoutes.delete('/messages/:id', function(req, res){
+			Messages.findOneAndRemove({_id:req.params.id}, function(err, message){
+				if(err)
+					res.send(err);
+				res.json(message);
+			});
+		});
+		
 
 		app.get('/send',function(req,res){
 		
@@ -450,7 +458,6 @@ apiRoutes.get('/users', function(req, res){
 			console.log(error);
 			res.end("error");
 		 }else{
-			console.log("Message sent: " + response.message);
 			res.end("sent");
 				}
 			});
