@@ -5,7 +5,7 @@
           <a href="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg"><img class="img" src="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg" /></a>
         </div>
         <div class="card-avatar"  ng-if=" speaker.imageUrl != ''">
-          <a href="{{ speaker.imageUrl }}"><img class="img" src=" {{ speaker.imageUrl }}" /></a>
+          <a href="{{ speaker.imageUrl }}"><img class="img" ng-src=" {{ speaker.imageUrl }}" /></a>
         </div>
         <div class="card-body">
           <h6 class="card-category text-gray">{{ speaker.position }}</h6>

@@ -2,7 +2,7 @@
     <div class="card card-blog" ng-repeat="conf in conferenceInfo">
         <div class="card-header card-header-image" >
             <a href="#pablo">
-                <img class="img" src="{{ conf.imageUrl }}">
+                <img class="img" ng-src="{{ conf.imageUrl }}">
                 <div class="card-title">
                         {{ conf.title }}
                 </div>
