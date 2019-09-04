@@ -1,202 +1,195 @@
 
-              
-
-              <div class="row">
-                <div class="col-lg-8 col-md-10" ng-init="getVisitorsStandard()">
-                  <div class="card">
-                    <div class="card-header card-header-warning">
-                      <h4 class="card-title">Standard Ticket Orders</h4>
-                      <p class="card-category">All the visitors who bought standard ticket</p>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Firstname </th>
-                                    <th>Lastname</th>
-                                    <th>E-mail</th>
-                                    <th class="text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="visitor in visitorsStandard">
-                                    <td>{{visitor.firstname}}</td>
-                                    <td>{{visitor.lastname}}</td>
-                                    <td>{{visitor.email}}</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" class="btn btn-success">
-                                            <i class="material-icons">person</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" class="btn btn-danger">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                      </td>             
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4" ng-init="getVisitorsStandardCount()">
-                  <div class="card card-stats">
-                      <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                          <i class="material-icons">check_circle_outline</i>
-                        </div>
-                        <p class="card-category">Standard Ticket Orders</p>
-                        <h3 class="card-title">{{ vscount }}
-                        </h3>
-                      </div>
-                      <div class="card-footer">
-                        <div class="stats">
-                          <i class="material-icons">attach_money</i> <strong > Money earned:  {{ vscount * 150 }} </strong> dollars
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-8 col-md-10" ng-init="getVisitorsPro()">
-                  <div class="card">
-                    <div class="card-header card-header-rose">
-                      <h4 class="card-title">Pro Ticket Orders</h4>
-                      <p class="card-category">All the visitors who bought pro ticket</p>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Firstname </th>
-                                    <th>Lastname</th>
-                                    <th>E-mail</th>
-                                    <th class="text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="visitor in visitorsPro">
-                                    <td>{{visitor.firstname}}</td>
-                                    <td>{{visitor.lastname}}</td>
-                                    <td>{{visitor.email}}</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" class="btn btn-success">
-                                            <i class="material-icons">person</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" class="btn btn-danger">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                      </td>             
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4" ng-init="getVisitorsProCount()">
-                  <div class="card card-stats">
-                      <div class="card-header card-header-rose card-header-icon">
-                        <div class="card-icon">
-                          <i class="material-icons">check_circle_outline</i>
-                        </div>
-                        <p class="card-category">Pro Ticket Orders</p>
-                        <h3 class="card-title">{{ procount }}
-                        </h3>
-                      </div>
-                      <div class="card-footer">
-                        <div class="stats">
-                          <i class="material-icons">attach_money</i> <strong > Money earned:  {{ procount * 150 }} </strong> dollars
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-8 col-md-10" ng-init="getVisitorsPremium()">
-                  <div class="card">
-                    <div class="card-header card-header-success">
-                      <h4 class="card-title">Premium Ticket Orders</h4>
-                      <p class="card-category">All the visitors who bought premium ticket</p>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Firstname </th>
-                                    <th>Lastname</th>
-                                    <th>E-mail</th>
-                                    <th class="text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="visitor in visitorsPremium">
-                                    <td>{{visitor.firstname}}</td>
-                                    <td>{{visitor.lastname}}</td>
-                                    <td>{{visitor.email}}</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" class="btn btn-success">
-                                            <i class="material-icons">person</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" class="btn btn-danger">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                      </td>             
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4" ng-init="getVisitorsPremiumCount()">
-                  <div class="card card-stats">
-                      <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                          <i class="material-icons">check_circle_outline</i>
-                        </div>
-                        <p class="card-category">Premium Ticket Orders</p>
-                        <h3 class="card-title">{{ premiumcount }}
-                        </h3>
-                      </div>
-                      <div class="card-footer">
-                        <div class="stats">
-                          <i class="material-icons">attach_money</i> <strong > Money earned:  {{ premiumcount * 150 }} </strong> dollars
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
+<div class="row">
+  <div class="col-lg-8 col-md-10" ng-init="getVisitorsStandard()">
+    <div class="card">
+      <div class="card-header card-header-warning">
+        <h4 class="card-title">Standard Ticket Orders</h4>
+        <p class="card-category">All the visitors who bought standard ticket</p>
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Firstname </th>
+                      <th>Lastname</th>
+                      <th>E-mail</th>
+                      <th class="text-right">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="visitor in visitorsStandard">
+                      <td>{{visitor.firstname}}</td>
+                      <td>{{visitor.lastname}}</td>
+                      <td>{{visitor.email}}</td>
+                      <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="material-icons">person</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger">
+                              <i class="material-icons">close</i>
+                          </button>
+                        </td>             
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" ng-init="getVisitorsStandardCount()">
+    <div class="card card-stats">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">check_circle_outline</i>
+          </div>
+          <p class="card-category">Standard Ticket Orders</p>
+          <h3 class="card-title">{{ vscount }}
+          </h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">attach_money</i> <strong > Money earned:  {{ vscount * 150 }} </strong> dollars
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 col-md-10" ng-init="getVisitorsPro()">
+    <div class="card">
+      <div class="card-header card-header-rose">
+        <h4 class="card-title">Pro Ticket Orders</h4>
+        <p class="card-category">All the visitors who bought pro ticket</p>
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Firstname </th>
+                      <th>Lastname</th>
+                      <th>E-mail</th>
+                      <th class="text-right">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="visitor in visitorsPro">
+                      <td>{{visitor.firstname}}</td>
+                      <td>{{visitor.lastname}}</td>
+                      <td>{{visitor.email}}</td>
+                      <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="material-icons">person</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger">
+                              <i class="material-icons">close</i>
+                          </button>
+                        </td>             
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" ng-init="getVisitorsProCount()">
+    <div class="card card-stats">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">check_circle_outline</i>
+          </div>
+          <p class="card-category">Pro Ticket Orders</p>
+          <h3 class="card-title">{{ procount }}
+          </h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">attach_money</i> <strong > Money earned:  {{ procount * 150 }} </strong> dollars
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 col-md-10" ng-init="getVisitorsPremium()">
+    <div class="card">
+      <div class="card-header card-header-success">
+        <h4 class="card-title">Premium Ticket Orders</h4>
+        <p class="card-category">All the visitors who bought premium ticket</p>
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Firstname </th>
+                      <th>Lastname</th>
+                      <th>E-mail</th>
+                      <th class="text-right">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="visitor in visitorsPremium">
+                      <td>{{visitor.firstname}}</td>
+                      <td>{{visitor.lastname}}</td>
+                      <td>{{visitor.email}}</td>
+                      <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" class="btn btn-success">
+                              <i class="material-icons">person</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger">
+                              <i class="material-icons">close</i>
+                          </button>
+                        </td>             
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" ng-init="getVisitorsPremiumCount()">
+    <div class="card card-stats">
+        <div class="card-header card-header-success card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">check_circle_outline</i>
+          </div>
+          <p class="card-category">Premium Ticket Orders</p>
+          <h3 class="card-title">{{ premiumcount }}
+          </h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">attach_money</i> <strong > Money earned:  {{ premiumcount * 150 }} </strong> dollars
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 
 
-                <div class="row" ng-init="getchart()">
-                  <div class="col-md-6 ml-auto mr-auto">
-                    <div class="card card-chart">
-                      <div class="card-header card-header-rose" data-header-animation="true">
-                      </div>
-                      <div class="card-body">
-                          <div class="card-actions">
-                              <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                                <i class="material-icons">build</i> 
-                                <div class="ct-chart ct-perfect-fourth"></div>
+<div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-chart card-header-warning">
+          <div class="ct-chart" id="dailySalesChart"></div>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Daily Sales</h4>
+          <p class="card-category"><span class="text-success"><i class="fa fa-long-arrow-up"></i> 55%  </span> increase in today sales.</p>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">access_time</i> updated 4 minutes ago
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+    <div class="card" ng-init="getPieChart( vscount, procount, premiumcount}})"> 
+      <div class="card-header card-chart card-header-success">
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Statistics</h4>
+        <div class="ct-chart" id="ticketStats"></div>
+      </div>
+    </div>
+    </div>
+  </div>
 
-                              </button>
-            
-                              <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Refresh">
-                                <i class="material-icons">refresh</i>
-                              </button>
-                              <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Change Date">
-                                <i class="material-icons">edit</i>
-                              </button>
-                          </div>
-                          <h4 class="card-title">Website Views</h4>
-                          <p class="card-category">Last Campaign Performance</p>
-                      </div>
-                      <div class="card-footer">
-                        <div class="stats">
-                          <div class="ct-chart" id="websiteViewsChart"></div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-     
-      
-     
-      
+

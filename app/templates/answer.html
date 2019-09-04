@@ -28,19 +28,27 @@
             <form ng-submit="sendAnswer(answer)">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">E-mail</label>
+                            <input type="email" id="to" name="email" ng-model="message.email" class="form-control" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                     <div class="form-group">
-                        <label>answer</label>
                         <div class="form-group">
                         <label class="bmd-label-floating"> Please enter answer.</label>
-                        <textarea class="form-control" rows="5" ng-model="answer.message"></textarea>
+                        <textarea class="form-control" id="content" rows="5" ng-model="answer.message"></textarea>
                         </div>
                     </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default pull-right">Send</button>
+                <button type="submit" id="send_email" ng-click="sendMessage();"class="btn btn-default pull-right">Send</button>
                 <div class="clearfix"></div>
             </form>
         </div>
         </div>
     </div>
     </div>
+

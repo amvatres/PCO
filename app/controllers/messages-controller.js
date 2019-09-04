@@ -13,16 +13,11 @@ function messagesController($scope,$http,$location,$routeParams,$route,toastr){
       });
     }
 
-    $scope.deleteSpeaker = function(id){
-      if(localStorage.getItem('admin') == 'true'){
-      var id = id;
-      $http.delete('/api/speakers/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-        $route.reload();
-        toastr.success('You have successfully removed selected speaker!', 'Success');
-      })}else{
-        toastr.error('You do not have permission to delete!', 'PERMISSION');
-      }
-    }
+    $scope.sendMessage=function(){
+      var to=$("#to").val();
+      var text=$("#content").val();
 
-   
+      $http.get('/api/send/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){ });
+      };
+
 }

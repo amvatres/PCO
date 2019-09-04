@@ -23,7 +23,7 @@
           <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <p class="card-category">Date</p>
-                <h3 class="card-title">{{ conference.date }} </h3>
+                <h3 class="card-title">{{ conference.date | date : "EEEE, MMMM d, y" }} </h3>
             </div>
           </div>
       </div>

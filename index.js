@@ -1,7 +1,18 @@
 //----------------------------------------------------------------------------------
 //Dependencies
 var express = require('express');
+var nodemailer = require('nodemailer');
 var app = express();
+
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: "amela.vatres@stu.ibu.edu.ba",
+        pass: "lmssifra123"
+    }
+});
+
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
@@ -54,7 +65,6 @@ apiRoutes.post('/authenticate', function(req, res){
 		bcrypt.compare(enteredPassword, users.password, function(err, resp) {
 			if(resp===true){
 				const payload = {
-					/* _id: users.id, */
 					username: users.username,
 					firstname: users.firstname,
 					lastname: users.lastname,
@@ -70,7 +80,7 @@ apiRoutes.post('/authenticate', function(req, res){
 					success: true,
 					message: 'Successfully Logged in!',
 					admin:payload.admin,
-          			token: token
+					token: token
 				});
 
 				
@@ -151,8 +161,7 @@ apiRoutes.use(function(req, res, next){
 //----------------------------------------------------------------------------------
 //Authenticated routes
 
-
-	apiRoutes.get('/admins', function(req, res){
+apiRoutes.get('/admins', function(req, res){
 	User.find({admin: true}, function(err, admins){
 	  if(err)
 		res.send(err);
@@ -425,6 +434,25 @@ apiRoutes.get('/users', function(req, res){
 				if(err)
 					res.send(err);
 				res.json(messages);
+			});
+		});
+
+		app.get('/send',function(req,res){
+		
+			var mailOptions={
+			to : req.query.to,
+			text : req.query.text
+		 }
+		 
+		 console.log(mailOptions);
+		 smtpTransport.sendMail(mailOptions, function(error, response){
+		 if(error){
+			console.log(error);
+			res.end("error");
+		 }else{
+			console.log("Message sent: " + response.message);
+			res.end("sent");
+				}
 			});
 		});
 //----------------------------------------------------------------------------------

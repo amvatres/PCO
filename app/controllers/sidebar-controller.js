@@ -1,5 +1,6 @@
-myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
+myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $rootScope){
 
+    console.log($rootScope.userInfo);
     $scope.check_login = function(){
         if(localStorage.getItem('user')){
             return true;
@@ -47,6 +48,7 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
             if (typeof response.data.token != 'undefined'){
                 localStorage.setItem('user',response.data.token);
                 localStorage.setItem('admin',response.data.admin);
+
                 toastr.success('You have successfully logged in!', 'Welcome');
             }else if(response.data.user == false){
                 toastr.error('No User Found', 'Login Error');
