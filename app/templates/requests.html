@@ -1,0 +1,20 @@
+<div class="card bg-info" ng-init="getSponsorshipRequests()">
+    <div class="card-body" ng-repeat="request in sponsors">
+        <h5 class="card-category card-category-social">
+            <i class="fa fa-vote-yea"></i> Request from {{request.company}}
+        </h5>
+        <div class="form-group label-floating">
+            <label class="control-label">E-mail</label>
+            <input type="email" id="to" name="email" ng-model="request.contactEmail" class="form-control" disabled>
+        </div>   
+        <h4 class="card-title">
+            <a href="">{{request.companyDescription}}</a>
+        </h4>
+        <div class="card-stats">
+           <div class="stats ml-auto">
+                <i class="material-icons" ng-click="acceptSponsor(request._id)">check_circle</i> 
+                <i class="material-icons" ng-click="deleteRequest(request._id)" >clear</i>
+            </div>
+        </div>
+    </div>
+</div>

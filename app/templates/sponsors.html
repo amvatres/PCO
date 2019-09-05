@@ -1,0 +1,25 @@
+<div class="row" ng-init="getRequestsCount()">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header card-header-text card-header-primary">
+              <div class="card-text">
+                <h4 class="card-title">{{requestCount}} requests</h4>
+              </div>
+            </div>
+            <div class="card-body">
+               You have {{requestCount}} for new sponsorships. Check them <a href="#!/requests" style="color:blue;">here</a>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-init="getSponsors();">
+    <div class="col-md-4" ng-repeat="x in sponsors">
+        <div class="card" style="width: 20rem;" >
+            <img class="card-img-top" ng-src="{{x.logoUrl}}">
+            <div class="card-body">
+                <p class="card-text">{{x.companyDescription}}</p>
+            </div>
+        </div>
+    </div>
+</div>

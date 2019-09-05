@@ -27,6 +27,8 @@ var Speakers = require('./app/models/speaker');
 var Tickets = require('./app/models/ticket'); 
 var Conference = require('./app/models/conference'); 
 var Messages = require('./app/models/message'); 
+var Sponsors = require('./app/models/sponsor'); 
+var AcceptedSponsors = require('./app/models/acceptedsponsor'); 
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
@@ -449,6 +451,7 @@ apiRoutes.get('/users', function(req, res){
 		
 			var mailOptions={
 			to : req.query.to,
+			subject:req.query.to,
 			text : req.query.text
 		 }
 		 
@@ -462,6 +465,115 @@ apiRoutes.get('/users', function(req, res){
 				}
 			});
 		});
+
+//----------------------------------------------------------------------------------
+	
+		apiRoutes.get('/sponsors/notaccepted', function(req, res){
+			Sponsors.find({accepted: false }, function(err, sponsors){
+			if(err)
+				res.send(err);
+			res.json(sponsors);
+			})
+		});
+
+		apiRoutes.get('/sponsors/notaccepted/count', function(req, res){
+			Sponsors.countDocuments( {accepted:false},function(err, sponsors){
+			  if(err)
+				res.send(err);
+			  res.json(sponsors);
+			})
+		  });
+
+
+		apiRoutes.delete('/sponsors/:id', function(req, res){
+			Sponsors.findOneAndRemove({_id:req.params.id}, function(err, sponsor){
+				if(err)
+					res.send(err);
+				res.json(sponsor);
+			});
+		});
+
+		apiRoutes.put('/sponsors/accepted/:id', function(req, res){
+			var query = {
+				accepted:true
+			};
+		
+			Sponsors.findOneAndUpdate({_id:req.params.id}, query, function(err, sponsor){
+				if(err)
+					res.send(err);
+				res.json(sponsor);
+			});
+		});
+	
+		
+		apiRoutes.get('/sponsors', function(req, res){
+			Sponsors.find({accepted: true }, function(err, sponsors){
+			if(err)
+				res.send(err);
+			res.json(sponsors);
+			})
+		});
+
+		app.get('/decline',function(req,res){
+		
+			var mailOptions={
+			to : req.query.to,
+			text : req.query.text
+		 }
+		 
+		 console.log(mailOptions);
+		 smtpTransport.sendMail(mailOptions, function(error, response){
+		 if(error){
+			console.log(error);
+			res.end("error");
+		 }else{
+			res.end("sent");
+				}
+			});
+		});
+
+		app.get('/accept',function(req,res){
+		
+			var mailOptions={
+			to : req.query.to,
+			text : req.query.text
+		 }
+		 
+		 console.log(mailOptions);
+		 smtpTransport.sendMail(mailOptions, function(error, response){
+		 if(error){
+			console.log(error);
+			res.end("error");
+		 }else{
+			res.end("sent");
+				}
+			});
+		});
+
+//----------------------------------------------------------------------------------
+		app.get('/notify',function(req,res){
+				
+			var mailOptions={
+			to : req.query.to,
+			suject:req.query.subject,
+			text : req.query.text
+		}
+		
+		console.log(mailOptions);
+		smtpTransport.sendMail(mailOptions, function(error, response){
+		if(error){
+			console.log(error);
+			res.end("error");
+		}else{
+			res.end("sent");
+				}
+			});
+		});
+
+		
+//----------------------------------------------------------------------------------
+
+	
 //----------------------------------------------------------------------------------
 app.use('/api', apiRoutes);
 //----------------------------------------------------------------------------------

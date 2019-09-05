@@ -13,6 +13,7 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
         });
       }
 
+   
       $scope.getVisitorsPro = function(){
         $http.get('/api/tickets/pro', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
           $scope.visitorsPro = response.data;
@@ -37,15 +38,41 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
         });
       }
 
-      new Chartist.Pie('.ct-chart', {
-        series: [20, 10, 30, 40]
-      }, {
-        donut: true,
-        donutWidth: 60,
-        donutSolid: true,
-        startAngle: 270,
-        showLabel: true
-      });
+
+      $scope.sendNotification = function () {
+
+        to=$("#to").val();
+        text="This e-mail is to remind you of upcoming conference. Thank you for buying ticket. We expect to see you and hope you will have great time.";
+       
+        var dataToPost = {to, text}; 
+        $http({
+            url: "/notify", 
+            method: "GET",
+            params: {to: dataToPost.to, subject: "Professional Conference Organizer - reminder", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
+              console.log(serverResponse);
+                toastr.success('Your reminder was successfully sent!', 'Success');
+              })
+            };
+        
+
+      function getCharts(){
+
+        var a=$scope.vscount;
+        console.log(a);
+        new Chartist.Pie('#ticketStats', {
+          series: [5, 10, 30, 40]
+        }, {
+          donut: true,
+          donutWidth: 60,
+          donutSolid: true,
+          startAngle: 270,
+          showLabel: true
+        });
+      }
+
+      getCharts();
+
+     
       
      
     
