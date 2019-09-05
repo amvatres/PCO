@@ -28,11 +28,10 @@ var Tickets = require('./app/models/ticket');
 var Conference = require('./app/models/conference'); 
 var Messages = require('./app/models/message'); 
 var Sponsors = require('./app/models/sponsor'); 
-var AcceptedSponsors = require('./app/models/acceptedsponsor'); 
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
-mongoose.connect(config.database); // Connect to db
+mongoose.connect(config.livedb); // Connect to db
 //----------------------------------------------------------------------------------
 //Uses
 app.set('superSecret', config.secret); // secret variable
