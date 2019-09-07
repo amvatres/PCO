@@ -13,6 +13,14 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
         });
       }
 
+      
+      function getvscount (){
+        $http.get('/api/tickets/standard/count', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          $scope.vscount = response.data;
+        });
+      }
+
+
    
       $scope.getVisitorsPro = function(){
         $http.get('/api/tickets/pro', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
@@ -56,11 +64,10 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
         
 
       function getCharts(){
-
-        var a=$scope.vscount;
-        console.log(a);
+       var vscount= getvscount();
+      console.log(vscount);
         new Chartist.Pie('#ticketStats', {
-          series: [5, 10, 30, 40]
+          series: [5, 4,3]
         }, {
           donut: true,
           donutWidth: 60,

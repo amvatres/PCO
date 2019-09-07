@@ -28,10 +28,11 @@ var Tickets = require('./app/models/ticket');
 var Conference = require('./app/models/conference'); 
 var Messages = require('./app/models/message'); 
 var Sponsors = require('./app/models/sponsor'); 
+var Agenda = require('./app/models/agenda'); 
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
-mongoose.connect(config.livedb    ); // Connect to db
+mongoose.connect(config.database    ); // Connect to db
 //----------------------------------------------------------------------------------
 //Uses
 app.set('superSecret', config.secret); // secret variable
@@ -569,6 +570,36 @@ apiRoutes.get('/users', function(req, res){
 
 		
 //----------------------------------------------------------------------------------
+	apiRoutes.post('/agenda', function(req, res){
+		var date = req.body.date;
+		var time = req.body.time;
+		var activity = req.body.activity;
+		var description = req.body.description;
+
+
+		var agenda = new Agenda({date:date, time:time, activity:activity, description: description});
+		Agenda.create(agenda, function(err, agenda){
+			if(err)
+				res.send(err);
+			res.json(agenda);
+			});
+		});
+
+		apiRoutes.get('/agenda', function(req, res){
+			Agenda.find( function(err, agenda){
+			if(err)
+				res.send(err);
+			res.json(agenda);
+			})
+		});
+
+		apiRoutes.get('/agenda/day1', function(req, res){
+			Agenda.find({date: false }, function(err, agenda){
+			if(err)
+				res.send(err);
+			res.json(agenda);
+			})
+		});
 
 	
 //----------------------------------------------------------------------------------
