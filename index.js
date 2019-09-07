@@ -31,15 +31,13 @@ var Sponsors = require('./app/models/sponsor');
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
-mongoose.connect(config.livedb); // Connect to db
+mongoose.connect(config.livedb    ); // Connect to db
 //----------------------------------------------------------------------------------
 //Uses
 app.set('superSecret', config.secret); // secret variable
 app.use(express.static(__dirname + '/app')); // client side
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 
 
 //----------------------------------------------------------------------------------
