@@ -43,6 +43,12 @@
                         <p>Sponsors</p>
                     </a>
                 </li>
+                <li class="nav-item" ng-class="getClass('/logout')">
+                    <a class="nav-link" href="#!sponsors"  ng-click="logout();">
+                        <i class="material-icons">power_settings_new</i>
+                        <p>Logout</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -73,10 +79,11 @@
                         <div class="ripple-container"></div></a>
                     </li>
                     <li class="nav-item dropdown show">
-                            <a class="nav-link"  ng-click="logout();" aria-haspopup="true" aria-expanded="true">
-                                <i class="material-icons" >power_settings_new</i>
-                            <div class="ripple-container"></div></a>
-                        </li>
+                        <a class="nav-link"  ng-click="logout();" aria-haspopup="true" aria-expanded="true">
+                            <i class="material-icons" >power_settings_new</i>
+                        <div class="ripple-container"></div></a>
+                    </li>
+                        
                 </ul>
                 </div>
             </div>
