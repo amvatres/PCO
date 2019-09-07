@@ -32,7 +32,7 @@ var Agenda = require('./app/models/agenda');
 
 //----------------------------------------------------------------------------------
 const port = process.env.PORT || 1234;
-mongoose.connect(config.database    ); // Connect to db
+mongoose.connect(config.livedb    ); // Connect to db
 //----------------------------------------------------------------------------------
 //Uses
 app.set('superSecret', config.secret); // secret variable
