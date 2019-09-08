@@ -48,7 +48,8 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
             if (typeof response.data.token != 'undefined'){
                 localStorage.setItem('user',response.data.token);
                 localStorage.setItem('admin',response.data.admin);
-
+                localStorage.setItem('id',response.data.id);
+                console.log(localStorage.getItem("id"));
                 toastr.success('You have successfully logged in!', 'Welcome');
             }else if(response.data.user == false){
                 toastr.error('No User Found', 'Login Error');
