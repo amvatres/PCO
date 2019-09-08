@@ -1,68 +1,7 @@
+
 <div class="row"  >
-  <div class="col-lg-4 col-md-12" ng-init="getConferenceInformation()">
-    <div class="card"ng-repeat="conf in conferenceInfo">
-      <div class="card-header card-header-tabs card-header-primary">
-        <div class="nav-tabs-navigation">
-          <div class="nav-tabs-wrapper">
-            <span class="nav-tabs-title">Agenda:</span>
-            <ul class="nav nav-tabs" data-tabs="tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="" data-toggle="tab">
-                  <i class="material-icons">date_range</i> {{conf.date | date : "EEEE, MMMM d, y" }} 
-                  <div class="ripple-container"></div>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="tab-content">
-          <div class="tab-pane active" id="profile">
-
-            <form ng-submit="addAgenda(agenda)" style="width: 70%; margin:auto;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Date</label>
-                            <input type="date" name ="date" ng-model="agenda.date" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Time</label>
-                            <input type="time" name ="time" ng-model="agenda.time" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Activity</label>
-                            <input type="text" name ="activity" ng-model="agenda.activity" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Description</label>
-                            <input type="text" name ="description" ng-model="agenda.description" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" id="submitButton" class="btn btn-default pull-right" data-background-color="green">Add</button>
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-12" ng-init="getConferenceInformation()">
-      <div class="card" ng-repeat="conf in conferenceInfo">
+  <div class="col-lg-4 col-md-12" ng-init="getFirstDay()">
+      <div class="card"  ng-repeat="conf in conferenceInfo">
         <div class="card-header card-header-tabs card-header-primary">
           <div class="nav-tabs-navigation">
             <div class="nav-tabs-wrapper">
@@ -78,17 +17,17 @@
             </div>
           </div>
         </div>
-        <div class="card-body" ng-init="getAgenda()">
+
+        <div class="card-body" >
           <div class="tab-content">
             <div class="tab-pane active" >
               <table class="table">
                 <tbody>
-                  <tr ng-repeat="conf in agenda"> 
-
-                    <td>{{conf.time}}</td>
-                    <td>{{conf.activity}}</td>
-                    <td>{{conf.description}}</td>
-
+                  <tr ng-repeat="x in day1"> 
+                    <td>{{x.date | date : "EEEE, MMMM d, y" }}</td>
+                    <td>{{x.time | date: "HH:mm a"}}</td>
+                    <td>{{x.activity}}</td>
+                    <td>{{x.description}}</td>
                     <td class="td-actions text-right">
                       <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                         <i class="material-icons">edit</i>
@@ -98,7 +37,6 @@
                       </button>
                     </td>
                   </tr>
-                  
                 </tbody>
               </table>
             </div>
@@ -106,4 +44,155 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-4 col-md-12" ng-init="getSecondDay()">
+        <div class="card"  >
+          <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <span class="nav-tabs-title">Agenda:</span>
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="" data-toggle="tab">
+                      <i class="material-icons">date_range</i> {{ secondDate | date : "EEEE, MMMM d, y" }} 
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card-body" >
+            <div class="tab-content">
+              <div class="tab-pane active" >
+                <table class="table">
+                  <tbody>
+                    <tr ng-repeat="y in day2"> 
+                      <td>{{y.date | date : "EEEE, MMMM d, y" }}</td>
+                      <td>{{y.time | date: "HH:mm a"}}</td>
+                      <td>{{y.activity}}</td>
+                      <td>{{y.description}}</td>
+                      <td class="td-actions text-right">
+                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12" ng-init="getThirdDate()">
+          <div class="card" >
+            <div class="card-header card-header-tabs card-header-primary">
+              <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                  <span class="nav-tabs-title">Agenda:</span>
+                  <ul class="nav nav-tabs" data-tabs="tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="" data-toggle="tab">
+                        <i class="material-icons">date_range</i> {{ thirdDate | date : "EEEE, MMMM d, y" }} 
+                        <div class="ripple-container"></div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card-body" >
+              <div class="tab-content">
+                <div class="tab-pane active" >
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="z in day3"> 
+                        <td>{{z.date | date : "EEEE, MMMM d, y" }}</td>
+                        <td>{{z.time | date: "HH:mm a"}}</td>
+                        <td>{{z.activity}}</td>
+                        <td>{{z.description}}</td>
+    
+                        <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 </div>
+
+<div class="row"  >
+    <div class="col-lg-6 col-md-12" >
+      <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+          <div class="nav-tabs-navigation" >
+            <div class="nav-tabs-wrapper">
+              <ul class="nav nav-tabs" data-tabs="tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="" data-toggle="tab">
+                    <i class="material-icons">date_range</i>  Agenda
+                    <div class="ripple-container"></div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" ng-init="getConferenceInformation()" >
+          <div class="tab-content" ng-repeat="conf in conferenceInfo" >
+            <div class="tab-pane active" id="profile"> 
+  
+              <form ng-submit="addAgenda(agenda)" style="width: 70%; margin:auto;">
+                  <div class="row">
+                      <div class="col-md-12" >
+                          <div class="form-group label-floating" >
+                              <label class="control-label">Date</label>
+                              <input type="date" name ="date" ng-model="agenda.date" min="{{conf.date  | date:'yyyy-MM-dd'}}"  max="{{newDate | date:'yyyy-MM-dd'}}"  class="form-control" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group label-floating">
+                              <label class="control-label">Time</label>
+                              <input type="time" name ="time" ng-model="agenda.time" class="form-control" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group label-floating">
+                              <label class="control-label">Activity</label>
+                              <input type="text" name ="activity" ng-model="agenda.activity" class="form-control" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group label-floating">
+                              <label class="control-label">Description</label>
+                              <input type="text" name ="description" ng-model="agenda.description" class="form-control" required>
+                          </div>
+                      </div>
+                  </div>
+                  <button type="submit" id="submitButton" class="btn btn-default pull-right" data-background-color="green">Add</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

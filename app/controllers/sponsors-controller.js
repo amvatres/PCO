@@ -26,8 +26,7 @@ function sponsorsController($scope,$http,$location,$routeParams,$route,toastr){
                 $http({
                     url: "/decline", 
                     method: "GET",
-                    params: {to: dataToPost.to, subject: "Professional Conference Organizer - sponsorhip declined", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
-                      console.log(serverResponse);
+                    params: {to: dataToPost.to, subject: " Conference Organizer - sponsorhip declined", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
                         toastr.success('Client was successfully notified!', 'Success');
                       })
                    
@@ -48,8 +47,7 @@ function sponsorsController($scope,$http,$location,$routeParams,$route,toastr){
             $http({
                 url: "/accept", 
                 method: "GET",
-                params: {to: dataToPost.to, subject: "Professional Conference Organizer - sponsorhip declined", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
-                    console.log(serverResponse);
+                params: {to: dataToPost.to, subject: " Conference Organizer - sponsorhip declined", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
                     toastr.success('Your answer was successfully sent!', 'Success');
                     })
         });

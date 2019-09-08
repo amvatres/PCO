@@ -75,7 +75,7 @@ apiRoutes.post('/authenticate', function(req, res){
 					message: 'Successfully Logged in!',
 					admin:payload.admin,
 					token: token,
-					id:id
+					id:payload.id
 				});				
 			}else{
 				res.send({
@@ -184,15 +184,15 @@ apiRoutes.use(function(req, res, next){
 	});
   
 	apiRoutes.put('/users/:id', function(req, res){
-		var admin = false;
-		if(req.body.role == "Admin"){
-			admin = true;
-		}
 		var query = {
-			username:req.body.username,
-			firstname:req.body.firstname,
-			lastname:req.body.lastname,
-			admin:admin
+			username : req.body.username,
+			firstname : req.body.firstname,
+			lastname : req.body.lastname,
+			email : req.body.email,
+			email : req.body.phoneNumber,
+			country : req.body.country,
+			company : req.body.company,
+			position : req.body.position,
 		};
 	
 		User.findOneAndUpdate({_id:req.params.id}, query, function(err, users){
@@ -200,6 +200,20 @@ apiRoutes.use(function(req, res, next){
 				res.send(err);
 			res.json(users);
 		});
+	});
+
+	apiRoutes.put('/users/password/:id', function(req, res){
+		
+		bcrypt.hash(req.body.password, 10, function(err, hash) {
+			var query = {
+				password:hash
+			};
+			User.findOneAndUpdate({_id:req.params.id}, query, function(err, users){
+				if(err)
+					res.send(err);
+				res.json(users);
+			});
+		})
 	});
 //----------------------------------------------------------------------------------
 	apiRoutes.post('/speakers', function(req, res){
@@ -534,7 +548,7 @@ apiRoutes.use(function(req, res, next){
 			
 		var mailOptions={
 			to : req.query.to,
-			suject:req.query.subject,
+			subject:req.query.subject,
 			text : req.query.text
 		}
 	
@@ -572,8 +586,8 @@ apiRoutes.use(function(req, res, next){
 		})
 	});
 
-	apiRoutes.get('/agenda/day1', function(req, res){
-		Agenda.find({date: false }, function(err, agenda){
+	apiRoutes.get('/agenda/:day', function(req, res){
+		Agenda.find({date: req.params.day }, function(err, agenda){
 		if(err)
 			res.send(err);
 		res.json(agenda);

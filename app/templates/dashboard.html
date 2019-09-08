@@ -20,10 +20,10 @@
                   <tr ng-repeat="visitor in visitorsStandard">
                       <td>{{visitor.firstname}}</td>
                       <td>{{visitor.lastname}}</td>
-                      <td id="to">{{visitor.email}}</td>
+                      <td id="email">{{visitor.email}}</td>
                       <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                              <i class="material-icons" ng-click="sendNotification(visitor._id)">speaker_notes</i>
+                          <button type="button" rel="tooltip" class="btn btn-success" ng-click="notify(visitor.email)">
+                              <i class="material-icons" >speaker_notes</i>
                           </button>
                         </td>             
                   </tr>
@@ -71,9 +71,9 @@
                   <tr ng-repeat="visitor in visitorsPro">
                       <td>{{visitor.firstname}}</td>
                       <td>{{visitor.lastname}}</td>
-                      <td>{{visitor.email}}</td>
+                      <td id="email">{{visitor.email}}</td>
                       <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-success">
+                          <button type="button" rel="tooltip" class="btn btn-success" ng-click="notify(visitor.email)">
                               <i class="material-icons">speaker_notes</i>
                           </button>
                           
@@ -91,7 +91,7 @@
             <i class="material-icons">check_circle_outline</i>
           </div>
           <p class="card-category">Pro Ticket Orders</p>
-          <h3 class="card-title" id="procount">{{ procount }}
+          <h3 class="card-title" >{{ procount }}
           </h3>
         </div>
         <div class="card-footer">
@@ -123,9 +123,9 @@
                   <tr ng-repeat="visitor in visitorsPremium">
                       <td>{{visitor.firstname}}</td>
                       <td>{{visitor.lastname}}</td>
-                      <td>{{visitor.email}}</td>
+                      <td id="email">{{visitor.email}}</td>
                       <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-success">
+                          <button type="button" rel="tooltip" class="btn btn-success" ng-click="notify(visitor.email)">
                               <i class="material-icons">speaker_notes</i>
                           </button>
                         </td>             
@@ -156,33 +156,50 @@
 
 
 <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-chart card-header-warning">
-          <div class="ct-chart" id="dailySalesChart"></div>
+  <div class="col-md-3">
+    <div class="card" > 
+      <div class="card-header card-chart card-header-info">
+          <h4 class="card-title">Column chart</h4>
+      </div>
+      <div class="card-body">
+        <div class="ct-chart" id="columnchart"></div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-md-3">
+      <div class="card" > 
+        <div class="card-header card-chart card-header-info">
+            <h4 class="card-title">Pie chart</h4>
         </div>
         <div class="card-body">
-          <h4 class="card-title">Daily Sales</h4>
-          <p class="card-category"><span class="text-success"><i class="fa fa-long-arrow-up"></i> 55%  </span> increase in today sales.</p>
+          <div class="ct-chart" id="piechart"></div>
         </div>
-        <div class="card-footer">
-          <div class="stats">
-            <i class="material-icons">access_time</i> updated 4 minutes ago
+      </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card" > 
+          <div class="card-header card-chart card-header-info">
+              <h4 class="card-title">Stacked bar chart</h4>
+          </div>
+          <div class="card-body">
+            <div class="ct-chart" id="stackedchart"></div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-3">
-    <div class="card" > 
-      <div class="card-header card-chart card-header-success">
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">Statistics</h4>
-        <div class="ct-chart" id="ticketStats"></div>
-      </div>
-    </div>
-    </div>
-  </div>
+
+      <div class="col-md-3">
+          <div class="card" > 
+            <div class="card-header card-chart card-header-info">
+                <h4 class="card-title">Peak circles</h4>
+            </div>
+            <div class="card-body">
+              <div class="ct-chart" id="peakcircles"></div>
+            </div>
+          </div>
+        </div>
+</div>
 
 
 

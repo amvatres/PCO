@@ -1,0 +1,122 @@
+
+    <div class="row" ng-init="showProfileInformation()"  >
+        <div class="col-md-4">
+            <div class="card card-profile"  >
+                <div class="card-avatar"  >
+                    <div ng-if=" user.imageUrl == '' || user.imageUrl == null">
+                        <a href="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg"><img class="img" src="http://www.bber.umt.edu/images/Staff/generic-headshot-male.jpg" /></a>
+                    </div>
+                    <div ng-if=" user.imageUrl != ''">
+                        <a href="{{ user.imageUrl }}"><img class="img" ng-src=" {{ user.imageUrl }}" /></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-category text-gray">{{ user.position }}</h6>
+                    <h4 class="card-title">{{ user.firstname }} {{user.lastname}}</h4>
+                    <p class="card-description">{{ user.firstname }} currently works as {{ user.position }} in company named {{ user.company }}. </p>
+                    <p class="card-description"> Country: {{ user.country }} </p>
+                    <p class="card-description"> E-mail: {{ user.email }} </p>
+                    <p class="card-description"> Phone number: {{ user.phoneNumber }} </p>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" ng-click="showPasswordForm()" id="change-password" style="float:right;">Change password</button>
+
+            <form ng-submit="changePassword(pass)" style="display:none;" id="change-password-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label class="bmd-label-floating">Enter new password</label>
+                        <input type="password" class="form-control" ng-model="pass.password" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label class="bmd-label-floating">Reenter password</label>
+                        <input type="password" class="form-control" ng-model="pass.repassword" required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default pull-right" >Edit  Info</button>
+            </form>
+        </div>
+    
+        <div class="col-md-8">
+            <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title">Edit Information About Yourself</h4>
+            </div>
+            <div class="card-body">
+                <form ng-submit="editAccountInfo(user)">
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="bmd-label-floating">Firstname</label>
+                        <input type="text" class="form-control" ng-model="user.firstname" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="bmd-label-floating">Lastname</label>
+                        <input type="text" class="form-control" ng-model="user.lastname" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Username</label>
+                        <input type="text" class="form-control" ng-model="user.username" required >
+                    </div>
+                    </div>
+                    <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Email</label>
+                        <input type="email" class="form-control" ng-model="user.email" required>
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Phone number</label>
+                        <input type="number" class="form-control" ng-model="user.phoneNumber" >
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Country</label>
+                        <input type="text" class="form-control" ng-model="user.country">
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Company</label>
+                        <input type="text" class="form-control" ng-model="user.company">
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Position</label>
+                        <input type="text" class="form-control" ng-model="user.position">
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="bmd-label-floating">Image URL</label>
+                        <input type="text" class="form-control" ng-model="conference.imageUrl">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default pull-right" >Edit  Info</button>
+                <div class="clearfix"></div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+        

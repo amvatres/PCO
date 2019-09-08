@@ -1,6 +1,5 @@
 myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $rootScope){
 
-    console.log($rootScope.userInfo);
     $scope.check_login = function(){
         if(localStorage.getItem('user')){
             return true;
@@ -42,6 +41,41 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
         });
       }
 
+      $scope.showProfileInformation = function(){
+        var id = localStorage.getItem("id");
+        $http.get('/api/users/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          $scope.user = response.data;
+        });
+      }
+
+      $scope.showPasswordForm = function(){
+        var form=document.getElementById("change-password-form")
+        form.style.display="block";
+        
+        var button=document.getElementById("change-password");
+        button.style.display="none";
+    }
+
+    $scope.editAccountInfo = function(){
+        var id = localStorage.getItem("id");
+        $http.put('/api/users/'+ id , $scope.user, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          toastr.success('You have successfully updated information!', 'Updated');
+        });
+      };
+
+      $scope.changePassword = function(){
+        var id = localStorage.getItem("id");
+        if($scope.pass.password==$scope.pass.repassword) {
+            $http.put('/api/users/password/'+ id , $scope.pass, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+                toastr.success('You have successfully updated information!', 'Updated');
+              });
+        }
+        else{
+            toastr.error('Passwords dont match!', 'Updated');
+        }
+
+       
+      };
 
     $scope.login = function(credentials){
         $http.post('/api/authenticate', credentials).then(function(response){
@@ -49,7 +83,7 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
                 localStorage.setItem('user',response.data.token);
                 localStorage.setItem('admin',response.data.admin);
                 localStorage.setItem('id',response.data.id);
-                console.log(localStorage.getItem("id"));
+            
                 toastr.success('You have successfully logged in!', 'Welcome');
             }else if(response.data.user == false){
                 toastr.error('No User Found', 'Login Error');
@@ -60,8 +94,7 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
             console.log(error);
         }
     }
-      
-   
+
     $scope.logout = function(){
         localStorage.clear();
     }
