@@ -593,6 +593,39 @@ apiRoutes.use(function(req, res, next){
 		res.json(agenda);
 		})
 	});
+
+	apiRoutes.delete('/agenda/:id', function(req, res){
+		Agenda.findOneAndRemove({_id:req.params.id}, function(err, agenda){
+			if(err)
+				res.send(err);
+			res.json(agenda);
+		});
+	});
+
+	apiRoutes.get('/agenda/:id', function(req, res){
+		Agenda.findOne({_id:req.params.id}, function(err, agenda){
+			if(err)
+				res.send(err);
+			res.json(agenda);
+		});
+	});
+
+	apiRoutes.put('/agenda/:id', function(req, res){
+	
+		var query = {
+			date : req.body.date,
+			time : req.body.time,
+			activity : req.body.activity,
+			description : req.body.description,
+		};
+	
+		Agenda.findOneAndUpdate({_id:req.params.id}, query, function(err, agenda){
+			if(err)
+				res.send(err);
+			res.json(agenda);
+		});
+	});
+
 //----------------------------------------------------------------------------------
 
 

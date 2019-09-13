@@ -6,12 +6,14 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
         }
         return false;
     }
+
     $scope.check_admin = function(){
         if(localStorage.getItem('admin')=='true'){
             return true;
         }
         return false;
     }
+
     $scope.check_url_registration = function(){
         var url = $location.url();
         if(url=="/registration"){
@@ -39,16 +41,16 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
             $location.path('/dashboard');
             toastr.success('You have successfully registered!', 'Success');
         });
-      }
+    }
 
-      $scope.showProfileInformation = function(){
+    $scope.showProfileInformation = function(){
         var id = localStorage.getItem("id");
         $http.get('/api/users/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-          $scope.user = response.data;
+            $scope.user = response.data;
         });
-      }
+    }
 
-      $scope.showPasswordForm = function(){
+    $scope.showPasswordForm = function(){
         var form=document.getElementById("change-password-form")
         form.style.display="block";
         
@@ -63,19 +65,17 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
         });
       };
 
-      $scope.changePassword = function(){
+    $scope.changePassword = function(){
         var id = localStorage.getItem("id");
         if($scope.pass.password==$scope.pass.repassword) {
             $http.put('/api/users/password/'+ id , $scope.pass, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
                 toastr.success('You have successfully updated information!', 'Updated');
-              });
+                });
         }
         else{
             toastr.error('Passwords dont match!', 'Updated');
         }
-
-       
-      };
+    };
 
     $scope.login = function(credentials){
         $http.post('/api/authenticate', credentials).then(function(response){
@@ -110,8 +110,8 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr, $root
         }else{
             $scope.mobileNavigationOpen = 'nav-open';
         }
-        
     }
+
     $scope.menuItemClicked = function(){
         $scope.mobileNavigationOpen = '';
     }

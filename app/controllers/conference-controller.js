@@ -19,14 +19,11 @@ function conferenceController($scope,$http,$location,$routeParams,$route,toastr)
       });
     }
      
-
     $scope.showConferenceInformation = function(){
       var id = $routeParams.id;
       $http.get('/api/conference/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
         $scope.conference = response.data;
       });
-
-      
     }
 
     $scope.deleteConference = function(id){

@@ -1,5 +1,50 @@
 
 <div class="row">
+  <div class="col-md-3">
+    <div class="card" > 
+      <div class="card-header card-chart card-header-info">
+          <h4 class="card-title">Column chart</h4>
+      </div>
+      <div class="card-body">
+        <div class="ct-chart" id="columnchart"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card" > 
+      <div class="card-header card-chart card-header-info">
+          <h4 class="card-title">Pie chart</h4>
+      </div>
+      <div class="card-body">
+        <div class="ct-chart" id="piechart"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+      <div class="card" > 
+        <div class="card-header card-chart card-header-info">
+            <h4 class="card-title">Stacked bar chart</h4>
+        </div>
+        <div class="card-body">
+          <div class="ct-chart" id="stackedchart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" > 
+          <div class="card-header card-chart card-header-info">
+              <h4 class="card-title">Peak circles</h4>
+          </div>
+          <div class="card-body">
+            <div class="ct-chart" id="peakcircles"></div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
   <div class="col-lg-8 col-md-10" ng-init="getVisitorsStandard()">
     <div class="card">
       <div class="card-header card-header-warning">
@@ -25,7 +70,7 @@
                           <button type="button" rel="tooltip" class="btn btn-success" ng-click="notify(visitor.email)">
                               <i class="material-icons" >speaker_notes</i>
                           </button>
-                        </td>             
+                      </td>             
                   </tr>
               </tbody>
           </table>
@@ -50,6 +95,7 @@
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-lg-8 col-md-10" ng-init="getVisitorsPro()">
     <div class="card">
@@ -76,8 +122,7 @@
                           <button type="button" rel="tooltip" class="btn btn-success" ng-click="notify(visitor.email)">
                               <i class="material-icons">speaker_notes</i>
                           </button>
-                          
-                        </td>             
+                      </td>             
                   </tr>
               </tbody>
           </table>
@@ -102,6 +147,7 @@
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-lg-8 col-md-10" ng-init="getVisitorsPremium()">
     <div class="card">
@@ -128,7 +174,7 @@
                           <button type="button" rel="tooltip" class="btn btn-success" ng-click="notify(visitor.email)">
                               <i class="material-icons">speaker_notes</i>
                           </button>
-                        </td>             
+                      </td>             
                   </tr>
               </tbody>
           </table>
@@ -153,54 +199,6 @@
     </div>
   </div>
 </div>
-
-
-<div class="row">
-  <div class="col-md-3">
-    <div class="card" > 
-      <div class="card-header card-chart card-header-info">
-          <h4 class="card-title">Column chart</h4>
-      </div>
-      <div class="card-body">
-        <div class="ct-chart" id="columnchart"></div>
-      </div>
-    </div>
-  </div>
-
-    <div class="col-md-3">
-      <div class="card" > 
-        <div class="card-header card-chart card-header-info">
-            <h4 class="card-title">Pie chart</h4>
-        </div>
-        <div class="card-body">
-          <div class="ct-chart" id="piechart"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card" > 
-          <div class="card-header card-chart card-header-info">
-              <h4 class="card-title">Stacked bar chart</h4>
-          </div>
-          <div class="card-body">
-            <div class="ct-chart" id="stackedchart"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-          <div class="card" > 
-            <div class="card-header card-chart card-header-info">
-                <h4 class="card-title">Peak circles</h4>
-            </div>
-            <div class="card-body">
-              <div class="ct-chart" id="peakcircles"></div>
-            </div>
-          </div>
-        </div>
-</div>
-
 
 
 

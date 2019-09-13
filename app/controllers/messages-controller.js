@@ -34,6 +34,5 @@ function messagesController($scope,$http,$location,$routeParams,$route,toastr){
               toastr.success('Your answer was successfully sent!', 'Success');
                deleteMessage();
             })
-          };
-      
+      };
   };

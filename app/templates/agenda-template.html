@@ -1,0 +1,99 @@
+<div class="row"  >
+        <div class="col-lg-4 col-md-12" ng-init="showAgendaItem()">
+            <div class="card" >
+              <div class="card-header card-header-tabs card-header-primary">
+                <div class="nav-tabs-navigation">
+                  <div class="nav-tabs-wrapper">
+                    <span class="nav-tabs-title">Agenda:</span>
+                    <ul class="nav nav-tabs" data-tabs="tabs">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="" data-toggle="tab">
+                          <i class="material-icons">date_range</i> {{agendaItem.date}} 
+                          <div class="ripple-container"></div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="card-body" >
+                <div class="tab-content">
+                  <div class="tab-pane active" >
+                    <table class="table">
+                      <tbody>
+                        <tr > 
+                          <td>{{agendaItem.date }}</td>
+                          <td>{{agendaItem.time | date: "HH:mm a"}}</td>
+                          <td>{{agendaItem.activity}}</td>
+                          <td>{{agendaItem.description}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12" >
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                <div class="nav-tabs-navigation" >
+                    <div class="nav-tabs-wrapper">
+                    <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="" data-toggle="tab">
+                            <i class="material-icons"></i>  EDIT SELECTED ITEM
+                            <div class="ripple-container"></div>
+                        </a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="card-body"   >
+                <div class="tab-content" >
+                    <div class="tab-pane active" id="profile"> 
+        
+                    <form ng-submit="(agenda)" style="width: 70%; margin:auto;">
+                        <div class="row">
+                            <div class="col-md-12" >
+                                <div class="form-group label-floating" >
+                                    <label class="control-label">Date</label>
+                                    <input type="date" name ="date" ng-model="agenda.date" min="{{conf.date  | date:'yyyy-MM-dd'}}"  max="{{newDate | date:'yyyy-MM-dd'}}"  class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Time</label>
+                                    <input type="time" name ="time" ng-model="agenda.time" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Activity</label>
+                                    <input type="text" name ="activity" ng-model="agenda.activity" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Description</label>
+                                    <input type="text" name ="description" ng-model="agenda.description" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" id="submitButton" class="btn btn-default pull-right" data-background-color="green">Add</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+      </div>

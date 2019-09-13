@@ -19,16 +19,16 @@ function sponsorsController($scope,$http,$location,$routeParams,$route,toastr){
             $route.reload();
             toastr.success('You have declined sponsorship request!', 'Success');
 
-                to=$("#to").val();
-                text="Sponsorship declined.";
-               
-                var dataToPost = {to, text}; 
-                $http({
-                    url: "/decline", 
-                    method: "GET",
-                    params: {to: dataToPost.to, subject: " Conference Organizer - sponsorhip declined", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
-                        toastr.success('Client was successfully notified!', 'Success');
-                      })
+              to=$("#to").val();
+              text="Sponsorship declined.";
+              
+              var dataToPost = {to, text}; 
+              $http({
+                  url: "/decline", 
+                  method: "GET",
+                  params: {to: dataToPost.to, subject: " Conference Organizer - sponsorhip declined", text: "Thank you for contacting us. PCO is always there for you. Here is the answer to your question. " + dataToPost.text }}, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(serverResponse) {
+                      toastr.success('Client was successfully notified!', 'Success');
+                    })
                    
         })}else{
             toastr.error('You do not have permission to decline!', 'PERMISSION');

@@ -1,6 +1,5 @@
 function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
 
- 
     $scope.getVisitorsStandard = function(){
         $http.get('/api/tickets/standard', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
           $scope.visitorsStandard = response.data;
@@ -59,7 +58,6 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
                   });
 
                   var data = {
-                    labels: ['Total'],
                     series: [
                       [$scope.vscount],
                       [$scope.premiumcount],
@@ -87,7 +85,6 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
 
 
                   new Chartist.Bar('#stackedchart', {
-                    labels: ['TOTAL'],
                     series: [
                       [$scope.vscount],
                       [$scope.premiumcount],
@@ -109,7 +106,6 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
                   });
                   
                   var chart = new Chartist.Bar('#peakcircles', {
-                    labels: ['TOTAL'],
                     series: [
                       [$scope.vscount, $scope.premiumcount, $scope.procount]
                     ]
@@ -123,11 +119,8 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
                     }
                   });
                   
-                  // Listen for draw events on the bar chart
                   chart.on('draw', function(data) {
-                    // If this draw event is of type bar we can use the data to create additional content
                     if(data.type === 'bar') {
-                      // We use the group element of the current series to append a simple circle with the bar peek coordinates and a circle radius that is depending on the value
                       data.group.append(new Chartist.Svg('circle', {
                         cx: data.x2,
                         cy: data.y2,
@@ -155,5 +148,4 @@ function dashboardController($scope,$http,$location,$routeParams,$route,toastr){
                 toastr.success('Your notification was successfully sent!', 'Success');
             })
         };
-
 }

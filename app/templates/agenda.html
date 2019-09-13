@@ -29,10 +29,7 @@
                     <td>{{x.activity}}</td>
                     <td>{{x.description}}</td>
                     <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                        <i class="material-icons">edit</i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" ng-click="deleteAgendaItem(x._id)">
                         <i class="material-icons">close</i>
                       </button>
                     </td>
@@ -73,10 +70,7 @@
                       <td>{{y.activity}}</td>
                       <td>{{y.description}}</td>
                       <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" ng-click="deleteAgendaItem(y._id)">
                           <i class="material-icons">close</i>
                         </button>
                       </td>
@@ -115,12 +109,8 @@
                         <td>{{z.time | date: "HH:mm a"}}</td>
                         <td>{{z.activity}}</td>
                         <td>{{z.description}}</td>
-    
                         <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" ng-click="deleteAgendaItem(z._id)">
                             <i class="material-icons">close</i>
                           </button>
                         </td>
@@ -143,7 +133,7 @@
               <ul class="nav nav-tabs" data-tabs="tabs">
                 <li class="nav-item">
                   <a class="nav-link active" href="" data-toggle="tab">
-                    <i class="material-icons">date_range</i>  Agenda
+                    <i class="material-icons"></i>  ADD ITEMS TO AGENDA
                     <div class="ripple-container"></div>
                   </a>
                 </li>
@@ -151,7 +141,7 @@
             </div>
           </div>
         </div>
-        <div class="card-body" ng-init="getConferenceInformation()" >
+        <div class="card-body"  >
           <div class="tab-content" ng-repeat="conf in conferenceInfo" >
             <div class="tab-pane active" id="profile"> 
   
@@ -160,7 +150,7 @@
                       <div class="col-md-12" >
                           <div class="form-group label-floating" >
                               <label class="control-label">Date</label>
-                              <input type="date" name ="date" ng-model="agenda.date" min="{{conf.date  | date:'yyyy-MM-dd'}}"  max="{{newDate | date:'yyyy-MM-dd'}}"  class="form-control" required>
+                              <input type="date" name ="date" ng-model="agenda.date" min="{{conf.date  | date:'yyyy-MM-dd'}}"  max="{{thirdDate | date:'yyyy-MM-dd'}}"  class="form-control" required>
                           </div>
                       </div>
                   </div>
@@ -195,4 +185,5 @@
         </div>
       </div>
     </div>
+    
   </div>
